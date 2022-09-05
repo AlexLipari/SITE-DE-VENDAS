@@ -10,6 +10,8 @@ cadastrarProduto()
 
 var ID = prompt("Digite o ID do produto:")
 var nome = prompt("Digite o nome do produto:")
+var idTrocaValor = prompt("Qual ID quer trocar o valor?")
+var trocarValor = prompt("Qual valor quer cadastrar?")
 buscarId(ID)
 console.log(buscarNome(nome))
 exibirProdutos()
@@ -18,6 +20,9 @@ ordenadosPeloId()
 exibirProdutos()
 console.log("  ")
 ordenarPelaAvaliacao()
+atualizarPreco(idTrocaValor, trocarValor)
+
+
 function cadastrarProduto() {
     arrayId[contador] = parseInt(prompt("Inserir um ID:"))
     arrayNome[contador] = prompt("Inserir nome do produto:")
@@ -58,12 +63,21 @@ function ordenarPelaAvaliacao() {
     ordenar(arrayAvaliacao)
     exibirProdutos()
 }
+
 function exibirProdutos() {
     for (var index = 0; index < contador; index++) {
         console.log(arrayId(index), arrayNome[index], arrayPreco[index], arrayAvaliacao[index])
     }
 }
+function atualizarPreco(idParametro, novoValor) {
+    for (var index = 0; index < contador; index++) {
+        if (idParametro == arrayId[index]) {
+            arrayPreco[index] = novoValor   
+        }
 
+    }
+    exibirProdutos()
+}
 function ordenar(propriedadesParametro) {
     for (var atual = 0; atual < contador - 1; atual++) {
         for (var seguinte = atual + 1; seguinte < contador; seguinte++) {
