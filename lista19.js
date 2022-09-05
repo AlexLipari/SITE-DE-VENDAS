@@ -14,7 +14,10 @@ buscarId(ID)
 console.log(buscarNome(nome))
 exibirProdutos()
 console.log("  ")
-ordenadosPeloId ()
+ordenadosPeloId()
+exibirProdutos()
+console.log("  ")
+ordenarPelaAvaliacao()
 function cadastrarProduto() {
     arrayId[contador] = parseInt(prompt("Inserir um ID:"))
     arrayNome[contador] = prompt("Inserir nome do produto:")
@@ -44,13 +47,31 @@ function buscarNome(nomeParametro) {
 }
 
 function ordenadosPeloId() {
+    ordenar(arrayId)
+    exibirProdutos()
+}
+function ordenarPeloPreco() {
+    ordenar(arrayPreco)
+    exibirProdutos()
+}
+function ordenarPelaAvaliacao() {
+    ordenar(arrayAvaliacao)
+    exibirProdutos()
+}
+function exibirProdutos() {
+    for (var index = 0; index < contador; index++) {
+        console.log(arrayId(index), arrayNome[index], arrayPreco[index], arrayAvaliacao[index])
+    }
+}
+
+function ordenar(propriedadesParametro) {
     for (var atual = 0; atual < contador - 1; atual++) {
         for (var seguinte = atual + 1; seguinte < contador; seguinte++) {
             var idAux = arrayId[atual]
             var nomeAux = arrayNome[atual]
             var precoAux = arrayPreco[atual]
             var avaliacaoAux = arrayAvaliacao[atual]
-            if (arrayId[atual] > arrayId[seguinte]) {
+            if (propriedadesParametro[atual] > propriedadesParametro[seguinte]) {
                 arrayId[atual] = arrayId[seguinte]
                 arrayId[seguinte] = idAux
                 arrayNome[atual] = arrayNome[seguinte]
@@ -62,11 +83,5 @@ function ordenadosPeloId() {
             }
 
         }
-    }
-    exibirProdutos ()
-}
-function exibirProdutos (){
-    for(var index=0;index<contador;index++){
-        console.log(arrayId(index),arrayNome[index],arrayPreco[index],arrayAvaliacao[index])
     }
 }
