@@ -12,6 +12,7 @@ var ID = prompt("Digite o ID do produto:")
 var nome = prompt("Digite o nome do produto:")
 var idTrocaValor = prompt("Qual ID quer trocar o valor?")
 var trocarValor = prompt("Qual valor quer cadastrar?")
+var deletarId = prompt("Qual produto deseja deletar? Digite o ID:")
 buscarId(ID)
 console.log(buscarNome(nome))
 exibirProdutos()
@@ -28,7 +29,7 @@ console.log("  ")
 atualizarPreco(idTrocaValor, trocarValor)
 exibirProdutos()
 console.log("  ")
-deletarProduto()
+deletarProduto(deletarId)
 
 
 function cadastrarProduto() {
@@ -125,6 +126,9 @@ function deletarProduto(idParametro) {
     }
     contador--
     arrayId = arrayIdAux
+    arrayNome = arrayNomeAux
+    arrayPreco = arrayPrecoAux
+    arrayAvaliacao = arrayAvaliacaoAux
     exibirProdutos()
 }
 function ordenar(propriedadesParametro) {
