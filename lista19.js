@@ -3,34 +3,43 @@ var arrayNome = []
 var arrayPreco = []
 var arrayAvaliacao = []
 var contador = 0
-cadastrarProduto()
-cadastrarProduto()
-cadastrarProduto()
-cadastrarProduto()
+var opcoes = 0
 
-var ID = prompt("Digite o ID do produto:")
-var nome = prompt("Digite o nome do produto:")
-var idTrocaValor = prompt("Qual ID quer trocar o valor?")
-var trocarValor = prompt("Qual valor quer cadastrar?")
-var deletarId = prompt("Qual produto deseja deletar? Digite o ID:")
-buscarId(ID)
-console.log(buscarNome(nome))
-exibirProdutos()
-console.log("  ")
-ordenadosPeloId()
-exibirProdutos()
-console.log("  ")
-ordenarPelaAvaliacao()
-exibirProdutos()
-console.log("  ")
-ordenarPelaAvaliacao()
-exibirProdutos()
-console.log("  ")
-atualizarPreco(idTrocaValor, trocarValor)
-exibirProdutos()
-console.log("  ")
-deletarProduto(deletarId)
-
+while (opcoes != 8) {
+    opcoes = operacaoSolicitada()
+    if (opcoes == 1) {
+        cadastrarProduto()
+        exibirProdutos()
+    } else if (opcoes == 2) {
+        var ID = prompt("Digite o ID do produto:")
+        var nome = prompt("Digite o nome do produto:")
+        buscarId(ID)
+        console.log(buscarNome(nome))
+    } else if (opcoes == 3) {
+        exibirProdutos()
+        console.log("  ")
+        ordenadosPeloId()
+    } else if (opcoes == 4) {
+        exibirProdutos()
+        console.log("  ")
+        ordenarPeloPreco()
+    } else if (opcoes == 5) {
+        exibirProdutos()
+        console.log("  ")
+        ordenarPelaAvaliacao()
+    } else if (opcoes == 6) {
+        var idTrocaValor = prompt("Qual ID quer trocar o valor?")
+        var trocarValor = prompt("Qual valor quer cadastrar?")
+        exibirProdutos()
+        console.log("  ")
+        atualizarPreco(idTrocaValor, trocarValor)
+    } else if (opcoes == 7) {
+        var deletarId = prompt("Qual produto deseja deletar? Digite o ID:")
+        exibirProdutos()
+        console.log("  ")
+        deletarProduto(deletarId)
+    }
+}
 
 function cadastrarProduto() {
     arrayId[contador] = parseInt(prompt("Inserir um ID:"))
@@ -39,6 +48,9 @@ function cadastrarProduto() {
     arrayAvaliacao[contador] = parseInt(prompt("Inserir avaliação"))
     contador++
 }
+function operacaoSolicitada() {
+    return prompt("qual operação deseja fazer? (1) Cadastro (2) Imformações ID (3) Ordenar pelo ID (4) Ordenar pelo preço (5) Ordenar pela avaliação (6) Atualizar preço (7) Deletar um produto (8) Encerrar")
+}
 
 function buscarId(idParametro) {
 
@@ -46,7 +58,6 @@ function buscarId(idParametro) {
         if (idParametro == arrayId[index]) {
 
             console.log(arrayId[index], arrayNome[index], arrayPreco[index], arrayAvaliacao[index])
-
         }
     }
 }
@@ -57,7 +68,6 @@ function buscarNome(nomeParametro) {
             return arrayId[index]
         }
     }
-
 }
 
 function ordenadosPeloId() {
@@ -75,7 +85,7 @@ function ordenarPelaAvaliacao() {
 
 function exibirProdutos() {
     for (var index = 0; index < contador; index++) {
-        console.log(arrayId(index), arrayNome[index], arrayPreco[index], arrayAvaliacao[index])
+        console.log(arrayId[index], arrayNome[index], arrayPreco[index], arrayAvaliacao[index])
     }
 }
 function atualizarPreco(idParametro, novoValor) {
@@ -83,7 +93,6 @@ function atualizarPreco(idParametro, novoValor) {
         if (idParametro == arrayId[index]) {
             arrayPreco[index] = novoValor
         }
-
     }
     exibirProdutos()
 }
@@ -108,7 +117,6 @@ function deletarProduto(idParametro) {
                 arrayAvaliacao[atual] = arrayAvaliacao[seguinte]
                 arrayAvaliacao[seguinte] = 0
             }
-
         }
     }
     var arrayIdAux = []
@@ -122,7 +130,6 @@ function deletarProduto(idParametro) {
             arrayPrecoAux[index] = arrayPreco[index]
             arrayAvaliacaoAux[index] = arrayAvaliacao[index]
         }
-
     }
     contador--
     arrayId = arrayIdAux
@@ -148,7 +155,6 @@ function ordenar(propriedadesParametro) {
                 arrayAvaliacao[atual] = arrayAvaliacao[seguinte]
                 arrayAvaliacao[seguinte] = avaliacaoAux
             }
-
         }
     }
 }
